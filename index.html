@@ -33,6 +33,64 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
+<!-- CSS untuk mencegah overlapping -->
+<style>
+    /* Mencegah portfolio items bertumpuk saat loading */
+    .portfolio-container {
+        min-height: 400px;
+        position: relative;
+    }
+    
+    .portfolio-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .portfolio-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Pastikan gambar tidak overflow - UKURAN ORIGINAL */
+    .portfolio-img {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .portfolio-img img {
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+    
+    /* Filter buttons styling */
+    #portfolio-flters li {
+        cursor: pointer;
+        padding: 8px 16px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+    
+    #portfolio-flters li:hover,
+    #portfolio-flters li.active {
+        background-color: #4F46E5;
+        color: white;
+    }
+    
+    /* Prevent layout shift during loading */
+    .portfolio-container::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 20%;
+        visibility: hidden;
+    }
+</style>
+
 <body>
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -603,7 +661,7 @@
         <div class="timeline">
             <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
                 <div class="timeline-text">
-                    <div class="timeline-date">Aug 2021 – Present</div>
+                    <div class="timeline-date">Aug 2021 – Apr 2025</div>
                     <h2>Muhammadiyah University of Surakarta</h2>
                     <h4>Bachelor of Informatics Engineering (GPA: 3.98/4.00)</h4>
                     <ul class="custom-list">
@@ -649,12 +707,14 @@
     <!-- Education End -->
 
     <!-- Projects Start -->
-    <div id="portfolio" class="container-xxl py-6 pt-5" id="project">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">My Portfolio</p>
-            <h1 class="display-5 mb-5">I Have Completed Latest Portfolio</h1>
-        </div>
-        <div id="project" class="container">
+    <div id="project" class="container-xxl py-6 pt-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">My Portfolio</p>
+                <h1 class="display-5 mb-5">I Have Completed Latest Portfolio</h1>
+            </div>
+            
+            <!-- Projects Header -->
             <div class="row g-5 mb-5 align-items-center wow fadeInUp" data-wow-delay="0.1s">
                 <div class="col-lg-6">
                     <h1 class="mb-4">My Projects</h1>
@@ -668,130 +728,115 @@
                     </ul>
                 </div>
             </div>
-            <div class="row g-4 portfolio-container wow fadeInUp" data-wow-delay="0.1s">
-                <!-- 1 -->
+            
+            <!-- Portfolio Items -->
+            <div class="row g-4 portfolio-container wow fadeInUp" data-wow-delay="0.3s">
+                <!-- Project 1 -->
                 <div class="col-lg-4 col-md-6 portfolio-item third second">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/web-app-elomate.png" alt="">
+                        <img class="img-fluid" src="img/web-app-elomate.png" alt="Elomate Web App">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/web-app-elomate.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.elomate.com/"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.elomate.com/" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 2 -->
                 <div class="col-lg-4 col-md-6 portfolio-item first">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/ui-dashboard.png" alt="">
+                        <img class="img-fluid" src="img/ui-dashboard.png" alt="UI Dashboard">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/ui-dashboard.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/H59KnJZs8ny8iJiZ3Ge69R/Oyster-Dashboard?node-id=2686%3A104176&t=tRaNq3QvMi0DF1IO-1"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/H59KnJZs8ny8iJiZ3Ge69R/Oyster-Dashboard?node-id=2686%3A104176&t=tRaNq3QvMi0DF1IO-1" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 3 -->
                 <div class="col-lg-4 col-md-6 portfolio-item second">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/Euy-App.png" alt="">
+                        <img class="img-fluid" src="img/Euy-App.png" alt="Euy Mobile App">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/Euy-App.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/EUY-App.git"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/EUY-App.git" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 4 -->
                 <div class="col-lg-4 col-md-6 portfolio-item third">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/SocialNet-web.png" alt="">
+                        <img class="img-fluid" src="img/SocialNet-web.png" alt="SocialNet Website">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/SocialNet-web.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/sistem-informasi-sosial.git"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/sistem-informasi-sosial.git" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <!-- 2 -->
+                
+                <!-- Project 5 -->
                 <div class="col-lg-4 col-md-6 portfolio-item first">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/ui-landing page.png" alt="">
+                        <img class="img-fluid" src="img/ui-landing page.png" alt="UI Landing Page">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/ui-landing page.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/81MNxUNhVDPA6LYM0XUaIV/Oyster-Landing-Page?node-id=276%3A7171&t=n8SRWxxAMBhoZPQf-1"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/81MNxUNhVDPA6LYM0XUaIV/Oyster-Landing-Page?node-id=276%3A7171&t=n8SRWxxAMBhoZPQf-1" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 6 -->
                 <div class="col-lg-4 col-md-6 portfolio-item second">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/Book-app.png" alt="">
+                        <img class="img-fluid" src="img/Book-app.png" alt="Book Mobile App">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/Book-app.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/MyBook-Jetpack_Compose.git"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/MyBook-Jetpack_Compose.git" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 7 -->
                 <div class="col-lg-4 col-md-6 portfolio-item third">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/GrowWell-web.png" alt="">
+                        <img class="img-fluid" src="img/GrowWell-web.png" alt="GrowWell Website">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/GrowWell-web.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/web-stunting.git"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/web-stunting.git" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <!-- 3 -->
+                
+                <!-- Project 8 -->
                 <div class="col-lg-4 col-md-6 portfolio-item first">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/ui-mukmeen.png" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/ui-mukmeen.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/iKCSk5ykTmQRnKr0fa9CpW/Mukmeen-Design---Della?node-id=501%3A1903&t=xLINRFrOI6VEQrIN-1"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/RuangDisabilitas.png" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/RuangDisabilitas.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/ruang_disabilitas-fiks.git"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item third">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/wisata-web.png" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/wisata-web.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://github.com/dellafitrialestari/web-wisata.git"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4 -->
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/ui-icon.png" alt="">
+                        <img class="img-fluid" src="img/ui-icon.png" alt="UI Icon Design">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/ui-icon.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/ljpNgH8rtMx72GHCqBEBiN/Expand-Icontyl?node-id=0%3A1&t=2Rs2hOQlTfWpF3oE-1"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/ljpNgH8rtMx72GHCqBEBiN/Expand-Icontyl?node-id=0%3A1&t=2Rs2hOQlTfWpF3oE-1" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Project 9 -->
                 <div class="col-lg-4 col-md-6 portfolio-item second">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/Mukmeen.jpg" alt="">
+                        <img class="img-fluid" src="img/Mukmeen.jpg" alt="Mukmeen Mobile App">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/Mukmeen.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://play.google.com/store/apps/details?id=com.chindoutama.mukmeen"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://play.google.com/store/apps/details?id=com.chindoutama.mukmeen" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <!-- 5 -->
+                
+                <!-- Project 10 -->
                 <div class="col-lg-4 col-md-6 portfolio-item first">
                     <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/ui-portfolio.png" alt="">
+                        <img class="img-fluid" src="img/ui-portfolio.png" alt="UI Portfolio Design">
                         <div class="portfolio-btn">
                             <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/ui-portfolio.png" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/tTFJyHcPyX7Wka2DMxPGtq/Della---Portofolio?node-id=201%3A5746&t=obFrYAxB9igWFa9i-1"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="https://www.figma.com/design/tTFJyHcPyX7Wka2DMxPGtq/Della---Portofolio?node-id=201%3A5746&t=obFrYAxB9igWFa9i-1" target="_blank"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1120,31 +1165,31 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jakarta Timur, DKI Jakarta</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 815-7892-3093</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>dellafitrialestari777@gmail.com</p>
+                    <h5 class="text-white mb-4">Contact</h5>
+                    <p class="mb-2 small"><i class="fa fa-map-marker-alt me-3"></i>Jakarta Timur, DKI Jakarta</p>
+                    <p class="mb-2 small"><i class="fa fa-phone-alt me-3"></i>+62 815-7892-3093</p>
+                    <p class="mb-2 small"><i class="fa fa-envelope me-3"></i>dellafitrialestari777@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://github.com/dellafitrialestari"><i class="fab fa-github"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.instagram.com/della.lesta/"><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.linkedin.com/in/dellafitrialestari/"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-sm btn-square btn-outline-light rounded-circle me-2" href="https://github.com/dellafitrialestari"><i class="fab fa-github"></i></a>
+                        <a class="btn btn-sm btn-square btn-outline-light rounded-circle me-2" href="https://www.instagram.com/della.lesta/"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-sm btn-square btn-outline-light rounded-circle me-2" href="https://www.linkedin.com/in/dellafitrialestari/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6"></div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Portfolio</h4>
-                    <a class="btn btn-link" href="index.html#project">Projects</a>
-                    <a class="btn btn-link" href="index.html#achivements">Achivements</a>
-                    <a class="btn btn-link" href="index.html#certif">Certificate</a>
-                    <a class="btn btn-link" href="index.html#haki">Copyright</a>
+                    <h5 class="text-white mb-4">Portfolio</h5>
+                    <a class="btn btn-link small" href="index.html#project">Projects</a>
+                    <a class="btn btn-link small" href="index.html#achivements">Achivements</a>
+                    <a class="btn btn-link small" href="index.html#certif">Certificate</a>
+                    <a class="btn btn-link small" href="index.html#haki">Copyright</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="index.html#about">About</a>
-                    <a class="btn btn-link" href="index.html#service">Services</a>
-                    <a class="btn btn-link" href="index.html#experience">Experience</a>
-                    <a class="btn btn-link" href="index.html#education">Education</a>
-                    <a class="btn btn-link" href="index.html#portfolio">Portfolio</a>
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link small" href="index.html#about">About</a>
+                    <a class="btn btn-link small" href="index.html#service">Services</a>
+                    <a class="btn btn-link small" href="index.html#experience">Experience</a>
+                    <a class="btn btn-link small" href="index.html#education">Education</a>
+                    <a class="btn btn-link small" href="index.html#portfolio">Portfolio</a>
                 </div>
             </div>
         </div>
@@ -1183,5 +1228,75 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
+
+<!-- JavaScript untuk mencegah overlapping -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inisialisasi portfolio items
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const portfolioFilters = document.querySelectorAll('#portfolio-flters li');
+        
+        // Show all items initially dengan delay untuk mencegah overlap
+        setTimeout(() => {
+            portfolioItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('show');
+                }, index * 100);
+            });
+        }, 500);
+        
+        // Portfolio filter functionality
+        portfolioFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                // Remove active class from all filters
+                portfolioFilters.forEach(f => f.classList.remove('active'));
+                // Add active class to clicked filter
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                portfolioItems.forEach((item, index) => {
+                    // Hide all items first
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }, 200);
+                });
+            });
+        });
+        
+        // Lazy loading untuk gambar
+        const images = document.querySelectorAll('.portfolio-img img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+            imageObserver.observe(img);
+            
+            img.onload = () => {
+                img.style.opacity = '1';
+            };
+        });
+    });
+</script>
 
 </html>
